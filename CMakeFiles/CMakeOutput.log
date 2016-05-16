@@ -1,0 +1,249 @@
+The system is: Windows - 6.1 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:19。
+节点 1 上的项目“E:\muduo\CMakeFiles\3.0.1\CompilerIdC\CompilerIdC.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdC.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdC.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> E:\muduo\CMakeFiles\3.0.1\CompilerIdC\.\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdC.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\3.0.1\CompilerIdC\CompilerIdC.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.57
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "E:/muduo/CMakeFiles/3.0.1/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags: 
+
+The output was:
+0
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:20。
+节点 1 上的项目“E:\muduo\CMakeFiles\3.0.1\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“Debug\”。
+  正在创建目录“Debug\CompilerIdCXX.tlog\”。
+InitializeBuildStatus:
+  正在创建“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /nologo /W0 /WX- /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> E:\muduo\CMakeFiles\3.0.1\CompilerIdCXX\.\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe
+FinalizeBuildStatus:
+  正在删除文件“Debug\CompilerIdCXX.tlog\unsuccessfulbuild”。
+  正在对“Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\3.0.1\CompilerIdCXX\CompilerIdCXX.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.59
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "E:/muduo/CMakeFiles/3.0.1/CompilerIdCXX/CompilerIdCXX.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: E:/muduo/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec2235750830.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:20。
+节点 1 上的项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec2235750830.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec2235750830.dir\Debug\”。
+  正在创建目录“E:\muduo\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec2235750830.dir\Debug\cmTryCom.7BE1371E.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec2235750830.dir\Debug\cmTryCom.7BE1371E.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec2235750830.dir\Debug\\" /Fd"cmTryCompileExec2235750830.dir\Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:queue testCCompiler.c
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.1 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec2235750830.dir\Debug\\" /Fd"cmTryCompileExec2235750830.dir\Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:queue testCCompiler.c
+  
+  testCCompiler.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2235750830.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2235750830.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2235750830.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTryCompileExec2235750830.dir\Debug\testCCompiler.obj
+  cmTryCompileExec2235750830.vcxproj -> E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2235750830.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec2235750830.dir\Debug\cmTryCom.7BE1371E.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec2235750830.dir\Debug\cmTryCom.7BE1371E.tlog\cmTryCompileExec2235750830.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec2235750830.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.99
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: E:/muduo/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec1266090250.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:22。
+节点 1 上的项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec1266090250.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec1266090250.dir\Debug\”。
+  正在创建目录“E:\muduo\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec1266090250.dir\Debug\cmTryCom.6E71CD9C.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec1266090250.dir\Debug\cmTryCom.6E71CD9C.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec1266090250.dir\Debug\\" /Fd"cmTryCompileExec1266090250.dir\Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:queue "c:\Program Files (x86)\cmake-3.0.1-win32-x86\share\cmake-3.0\Modules\CMakeCCompilerABI.c"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.1 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"cmTryCompileExec1266090250.dir\Debug\\" /Fd"cmTryCompileExec1266090250.dir\Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:queue "c:\Program Files (x86)\cmake-3.0.1-win32-x86\share\cmake-3.0\Modules\CMakeCCompilerABI.c"
+  
+  CMakeCCompilerABI.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1266090250.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1266090250.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec1266090250.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTryCompileExec1266090250.dir\Debug\CMakeCCompilerABI.obj
+  cmTryCompileExec1266090250.vcxproj -> E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec1266090250.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec1266090250.dir\Debug\cmTryCom.6E71CD9C.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec1266090250.dir\Debug\cmTryCom.6E71CD9C.tlog\cmTryCompileExec1266090250.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec1266090250.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.62
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: E:/muduo/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec2341189567.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:23。
+节点 1 上的项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec2341189567.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec2341189567.dir\Debug\”。
+  正在创建目录“E:\muduo\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec2341189567.dir\Debug\cmTryCom.ED17E0C9.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec2341189567.dir\Debug\cmTryCom.ED17E0C9.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec2341189567.dir\Debug\\" /Fd"cmTryCompileExec2341189567.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:queue testCXXCompiler.cxx
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.1 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec2341189567.dir\Debug\\" /Fd"cmTryCompileExec2341189567.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:queue testCXXCompiler.cxx
+  
+  testCXXCompiler.cxx
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2341189567.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2341189567.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec2341189567.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTryCompileExec2341189567.dir\Debug\testCXXCompiler.obj
+  cmTryCompileExec2341189567.vcxproj -> E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec2341189567.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec2341189567.dir\Debug\cmTryCom.ED17E0C9.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec2341189567.dir\Debug\cmTryCom.ED17E0C9.tlog\cmTryCompileExec2341189567.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec2341189567.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.74
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: E:/muduo/CMakeFiles/CMakeTmp
+
+Run Build Command:"C:/Program Files (x86)/MSBuild/12.0/bin/MSBuild.exe" "cmTryCompileExec3148282699.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=12.0"
+Microsoft(R) 生成引擎版本 12.0.21005.1
+[Microsoft .NET Framework 版本 4.0.30319.18444]
+版权所有 (C) Microsoft Corporation。保留所有权利。
+
+生成启动时间为 2016/2/17 17:50:24。
+节点 1 上的项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec3148282699.vcxproj”(默认目标)。
+PrepareForBuild:
+  正在创建目录“cmTryCompileExec3148282699.dir\Debug\”。
+  正在创建目录“E:\muduo\CMakeFiles\CMakeTmp\Debug\”。
+  正在创建目录“cmTryCompileExec3148282699.dir\Debug\cmTryCom.D16AD504.tlog\”。
+InitializeBuildStatus:
+  正在创建“cmTryCompileExec3148282699.dir\Debug\cmTryCom.D16AD504.tlog\unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec3148282699.dir\Debug\\" /Fd"cmTryCompileExec3148282699.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:queue "c:\Program Files (x86)\cmake-3.0.1-win32-x86\share\cmake-3.0\Modules\CMakeCXXCompilerABI.cpp"
+  Microsoft (R) C/C++ Optimizing Compiler Version 18.00.21005.1 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /Zi /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"cmTryCompileExec3148282699.dir\Debug\\" /Fd"cmTryCompileExec3148282699.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:queue "c:\Program Files (x86)\cmake-3.0.1-win32-x86\share\cmake-3.0\Modules\CMakeCXXCompilerABI.cpp"
+  
+  CMakeCXXCompilerABI.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:QUEUE /OUT:"E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec3148282699.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec3148282699.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/muduo/CMakeFiles/CMakeTmp/Debug/cmTryCompileExec3148282699.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug cmTryCompileExec3148282699.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTryCompileExec3148282699.vcxproj -> E:\muduo\CMakeFiles\CMakeTmp\Debug\cmTryCompileExec3148282699.exe
+FinalizeBuildStatus:
+  正在删除文件“cmTryCompileExec3148282699.dir\Debug\cmTryCom.D16AD504.tlog\unsuccessfulbuild”。
+  正在对“cmTryCompileExec3148282699.dir\Debug\cmTryCom.D16AD504.tlog\cmTryCompileExec3148282699.lastbuildstate”执行 Touch 任务。
+已完成生成项目“E:\muduo\CMakeFiles\CMakeTmp\cmTryCompileExec3148282699.vcxproj”(默认目标)的操作。
+
+已成功生成。
+    0 个警告
+    0 个错误
+
+已用时间 00:00:00.67
+
+

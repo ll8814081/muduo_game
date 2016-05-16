@@ -1,0 +1,408 @@
+#ifndef MUDUO_EXAMPLES_BAINAGAME_OP_CODEC_H
+#define MUDUO_EXAMPLES_BAINAGAME_OP_CODEC_H
+
+
+#define GLOBAL_OPCODE_MSG_NULL_ACTION         0x0000
+
+#define GLOBAL_OPCODE_CMSG_ECHO               0x0001
+#define GLOBAL_OPCODE_SMSG_ECHO               0x0002
+
+#define GLOBAL_OPCODE_CMSG_PING               0x0003
+#define GLOBAL_OPCODE_SMSG_PONG               0x0004
+
+#define GLOBAL_OPCODE_CMSG_HELLO_SERVER       0x0005
+#define GLOBAL_OPCODE_SMSG_HELLO_CLIENT       0x0006
+
+enum GAME_OPCODE
+{
+	MSG_NULL_ACTION							= GLOBAL_OPCODE_MSG_NULL_ACTION,
+
+	CMSG_ECHO 								= GLOBAL_OPCODE_CMSG_ECHO, // for performance test
+	SMSG_ECHO 								= GLOBAL_OPCODE_SMSG_ECHO, // for performance test
+
+	//Ping/Pong
+	CMSG_PING                               = GLOBAL_OPCODE_CMSG_PING,
+	SMSG_PONG                               = GLOBAL_OPCODE_SMSG_PONG,
+
+	CMSG_HELLO_SERVER                       = GLOBAL_OPCODE_CMSG_HELLO_SERVER,
+	SMSG_HELLO_CLIENT                       = GLOBAL_OPCODE_SMSG_HELLO_CLIENT,
+
+
+	//==登录相关协议叿	
+	SMSG_KICK	= 31,		//连接出错被踢凿	CMSG_BYE,
+	SMSG_KEEP_ACTIVE,	//保持连接
+
+	CMSG_ACCOUNT_LOGIN,		//账号登录
+	SMSG_LOGIN_RESP,		//账号登录反馈
+
+	CMSG_CHECK_NAME,		//检查重吿	SMSG_CHECK_NAME_RESP,		//检查重名返囿
+	CMSG_ACCOUNT_REGISTER,		//玩家注册账号
+	SMSG_ACCOUNT_REGISTER_RESP,		//玩家注册账号返回
+
+	CMSG_THIRD_BIND,		//第三方账号绑宿	SMSG_THIRD_BIND_RESP,		//第三方账号绑定反馿
+	CMSG_THIRD_LOGIN,		//第三方账号登陿	SMSG_THIRD_LOGIN_RESP,		//第三方账号登陆反馿
+	CMSG_ACCOUNTINFO_MOD,	//账号信息修改modify
+	SMSG_ACCOUNTINFO_MOD_RESP,
+
+	SMSG_PLAYER_INFO,	//账号信息gameserver -> client
+
+	CMSG_PLAYER_GET_SPREE,	// 领取奖励 =>
+	SMSG_PLAYER_GET_SPREE_RESP,		// <= (errorCode, next time)
+
+	CMSG_ACCOUNT_LOGOUT,	//账号登出
+	SMSG_LOGOUT_RESP,
+
+	CMSG_OPTIONS,			// 发送渠道信恿	SMSG_OPTIONS_RESP,
+
+	CMSG_ACCOUNT_TYPE,		// 账号类型 =>		# 获得用户信息后，发送账号类型给服务端?
+	CMSG_ACCOUNT_PASSWORD_RESET, // 密码重置?	SMSG_ACCOUNT_PASSWORD_RESET_RESP,  //密码重置返回值?
+	SMSG_ACCOUNT_AVATAR_UPDATED, // 头像修改通知?<= (struct stAvatarInfo)
+
+	SMSG_CONFIG_RESP, // 服务器配置信恿<= (struct GM2C_Config_Resp)
+
+	CMSG_SERVER_CONFIG=58, //更新服务器地址 <= (struct C2GM_ServerConfig )
+	SMSG_SERVER_CONFIG_RESP,
+
+	//==大厅，房闿	CMSG_ROOM_GET_LIST = 101,	//获取某类型的房间列表
+	SMSG_ROOM_GET_LIST_RESP,
+	CMSG_ROOM_PLAYER_ENTER,	//选择进入了房闿	SMSG_ROOM_PLAYER_ENTER_RESP,
+	CMSG_HALL_INFO,			// 请求大厅信息
+	SMSG_HALL_INFO_RESP,	// 大厅信息
+	CMSG_HALL_QUICK_START,			// 快速开始请汿	# (roomType) =>	
+	SMSG_HALL_QUICK_START_RESP,		// 快速开始的结果	# <= (errorCode, uRoomID)
+
+	CMSG_ROOM_GET_TOP_MATCH_POINT_PLAYERS, // 请求房间积分最高的用户;
+	SMSG_ROOM_GET_TOP_MATCH_POINT_PLAYERS_RESP, // 请求房间积分最高的用户的结枿	SMSG_ROOM_MATCH_POINT_RESET_EVENT, // 积分重置消息
+	SMSG_ROOM_RANK_UPDATE, // 排名更新
+	// !!!:SMSG_RESTORE_GAME/CMSG_RESTORE_GAME_RESP are not used
+	// Use CMSG_RESUME_GAME/SMSG_RESUME_GAME_RESP instead
+	SMSG_RESTORE_GAME,		// (MatchID, RooomID, TableID) <= 游戏断线重连
+	CMSG_RESTORE_GAME_RESP, // (bool accept) => 游戏断线重连返回消息：确认是否重连?	CMSG_RESUME_GAME,		// (struct stGameResumeReq) =>	# 试图恢复游戏      （废弃）
+	SMSG_RESUME_GAME_RESP,	// (struct stGameResumeResp) <=	# 恢复游戏结果 （废弃）
+
+	CMSG_CREATE_TABLE,		// CG_CreateRoom (MatchID, RoomTypeID) => 创建一个房间（目前陿Friend 私人房）
+	SMSG_CREATE_TABLE_RESP,	// GC_CreateRoomResp (MatchID, RoomTypeID, RooomID, TableID, {extras}) <= 创建桌子的返囿	CMSG_PLAYER_ENTER_TABLE2,	// GC_EnterTableEx (MatchID, RoomTypeID, extras) => 玩家进入桌子
+
+	//==桌子
+	CMSG_TABLE_GET_LIST,		//获取桌子列表
+	SMSG_TABLE_GET_LIST_RESP,
+	CMSG_TABLE_PLAYER_ENTER,	//选择加入桌子
+	SMSG_TABLE_PLAYER_ENTER_RESP,
+	SMSG_PLAYER_TABLE_INFO = 201,	//桌子的信息发送给玩家
+	SMSG_PLAYER_ON_TABLE_BROADCAST,//我进入了该桌孿	SMSG_PLAYER_TABLE_DEALER,	//谁是庄家
+	CMSG_PLAYER_TABLE_READY,	//准备好了
+	SMSG_PLAYER_TABLE_READY_BROADCAST,
+	CMSG_PLAYER_TABLE_BASE_ANTE,	//底注
+	SMSG_PLAYER_TABLE_BASE_ANTE_BROADCAST,
+	SMSG_PLAYER_TABLE_DEAL,//发牌
+	CMSG_PLAYER_TABLE_ANTE,	//下注
+	SMSG_PLAYER_TABLE_ANTE_RSP,//下注反馈
+	SMSG_PLAYER_TABLE_ANTE_BROADCAST,
+	SMSG_PLAYER_TABLE_ANTE_COUNT_BROADCAST,	//当局总钱数下叿	CMSG_PLAYER_TABLE_LOOK_POKER,	//看牌
+	SMSG_PLAYER_TABLE_LOOK_POKER,
+	SMSG_PLAYER_TABLE_LOOK_POKER_BROADCAST,
+	CMSG_PLAYER_TABLE_COMPARE,	//比牌
+	SMSG_PLAYER_TABLE_COMPARE_RSP,
+	SMSG_PLAYER_TABLE_COMPARE_BROADCAST,
+	CMSG_PLAYER_TABLE_GIVEUP,	//弃牌
+	SMSG_PLAYER_TABLE_GIVEUP_BROADCAST,
+	SMSG_PLAYER_TABLE_GAME_OVER_BROADCAST,	//本轮结束
+	CMSG_PLAYER_LEAVE_TABLE,		//离开桌子
+	SMSG_PLAYER_KICKED_FROM_TABLE,	//玩家被踢离桌孿	SMSG_PLAYER_LEAVE_TABLE_BROADCAST,	//通知本桌内的亿<= (PlayerID, ePlayerLeaveRoomReason)
+	CMSG_PLAYER_CHANGE_TABLE,	//玩家换桌?	SMSG_PLAYER_CHANGE_TABLE_RSP,
+	SMSG_PLAYER_ACTIVE_PLAYER,	//当前活动玩家
+	CMSG_PLAYER_TABLE_CURR_ANTE,//当前注码
+	SMSG_PLAYER_TABLE_CURR_ANTE,//广播当前注码
+	SMSG_PLAYER_TABLE_ACTIVE_TIMEOUT,	//活动时间刿	SMSG_PLAYER_TABLE_COUNTDOWN_BEGIN,	//倒计时十秒开姿	SMSG_PLAYER_MONEY_CHANGE,	//玩家的钱变化
+	SMSG_PLAYER_POINT_UPDATE,	//==玩家的角色集分变匿	SMSG_PLAYER_TABLE_ROUNDS_CHANGE,	//回合变化
+	SMSG_PLAYER_TABLE_POINT_CHANGE,	//本局积分变化
+	SMSG_PLAYER_TABLE_MATCH_ROUNDS,	//比赛局敿	SMSG_PLAYER_TABLE_GAME_BEGIN_BROADCAST, // (SessionID) <= # 本局游戏开始开姿	CMSG_PLAYER_TABLE_DEALER_DEAL_FINISHED, // (SessionID) => # 庄家的发牌完房	SMSG_PLAYER_TABLE_SYSTEM_NOTIFY,							// <= (nType, sMsg, uReserved)				# 桌面通知
+	CMSG_PLAYER_TABLE_FOLLOW_ALLTIME,							// (nAction) =>				# 跟到庿 后接参数 nAction=1：跟到底 2：取消跟到底
+	SMSG_PLAYER_TABLE_PLAYER_ONLINE_STATUS_CHANGED_BROADCAST,	// <= (PlayerID, Status)	# 玩家断线 Status=ONLINE_STATUS_ONLINE: Online, ONLINE_STATUS_OFFLINE:Offline
+	SMSG_PLAYER_TABLE_FOLLOW_ALLTIME_BROADCAST,					// <= (PlayerID, nAction)	# 玩家跟到底或者取消跟到底
+	SMSG_PLAYER_TABLE_INFO_SYNC,			// 同步刷新桌子和玩家的状态信恿(struct GC_TableInfo)
+	SMSG_PLAYER_TABLE_COINS_WARNING,		// 金币预警
+	SMSG_PLAYER_TABLE_GAME_PRIZE_INFO,		// 游戏奖励信息?
+	SMSG_PLAYER_TABLE_DEALER_DEAL_BROADCAST,// <=	# 开始发牌的广播
+	CMSG_PLAYER_TABLE_CHANGE_CARD,			// [index] =>		# 换牌
+	SMSG_PLAYER_TABLE_CHANGE_CARD_RESP,		// <= (Result, [card])	# 自己换牌的反馿	SMSG_PLAYER_TABLE_CHANGE_CARD_BROADCAST,// [index] =>		# 换牌的广撿	
+	SMSG_PLAYER_DIMONDS_CHANGE,
+    SMSG_PLAYER_TABLE_INFO_MJ1V1,
+
+	CMSG_PLAYER_END = 400,
+
+	// 机器人相兿	SMSG_PLAYER_TABLE_INVITE = 401,	// <= (MatchID, RoomType, RooomID, TableID) # 服务器邀请机器人玩家进入桌子
+	CMSG_PLAYER_ENTER_TABLE,		// (MatchID, RoomType, RooomID, TableID) =>	# 机器人接受邀请进入特定桌孿	SMSG_PLAYER_ACTION_SUGGEST,		// <= (Suggest)								# 建议机器人采取其他行势	SMSG_PLAYER_SET_STRATEGY,		// <= (Strategy)							# 机器人修改输赢策畿	SMSG_PLAYER_HANDS,				// <= ({PlayerID => Pokers})				# 手牌大小序，全桌人的手牌
+
+	// 消息、通知
+	SMSG_MESSAGE_NEW = 501, // <= 收到新消恿(struct GC_Message_List)
+	CMSG_MESSAGE_LIST, // => 获取消息
+	SMSG_MESSAGE_LIST_RESP, // <= 返回消息，按时间逆序 (struct GC_Message_List)
+	CMSG_MESSAGE_SEND, // => 发送消恿	SMSG_MESSAGE_SEND_RESP , // <= 返回消息状怿	SMSG_NOTIFICATION_SEND,  //发送通知
+
+    //邮箱功能
+    CMSG_MESSAGE_LIST_EX,
+    SMSG_MESSAGE_LIST_RESP_EX,
+    CMSG_MESSAGE_UPDATE_STATUS,
+    SMSG_MESSAGE_UPDATE_STATUS_RESP,
+
+
+	//消息推逿	CMSG_PLAYER_PUSH_ID = 581,	//提交accId和DeviceId (struct C2GM_PlayerPushID)
+	CMSG_PUSH_TO_PLAYER,
+
+    CMSG_GM_GET_PLAYER_STATUS=600,
+    SMSG_GM_GET_PLAYER_STATUS_RESP,
+    CMSG_GM_SEND_MESSAGE,
+    SMSG_GM_RECV_MESSAGE,
+    SMSG_GM_SEND_MESSAGE_RESP,
+
+	// 设置
+	CMSG_PLAYER_SETTINGS_UPDATE = 700,			//	<= (int32 settings)		# 发送消息设置的结果
+	SMSG_PLAYER_SETTINGS_UPDATE_RESP,			//  => (errorCode)			# 消息设置的结枿
+    CMSG_PLAYER_SETTING_SEX = 701,              //         #发送性别设置
+    SMSG_PLAYER_SETTING_SEX_RESP,               //         #性别设置的结枿
+	// 商店和支仿	CMSG_SHOP_GET_LIST = 1001,		// =>						# 请求商品列表
+	SMSG_SHOP_GET_LIST_RESP,		// <= 商品列表				# 返回商品列表
+	CMSG_SHOP_BUY_ITEM,				// 商品ID =>				# 请求购买商品
+	SMSG_SHOP_BUY_ITEM_RESP,		// <= 平台,订单叿		# 返回订单叿
+	SMSG_SHOP_ORDER_RESULT,			// <= 订单结果				# 返回订单结果, 更新玩家金币
+
+	CMSG_SHOP_ROBOT_BUY_ITEM,		// 商品信息 =>				# 机器人购买特定商品，直接加金币，额外做记彿	SMSG_SHOP_ROBOT_BUY_ITEM_RESP,	// <= 成功 or 失败			# 返回机器人购买特定商品的结果
+
+	CMSG_SHOP_UPDATE_LIST,			// [(ver, platform)] =>	    # 请求更新商品列表
+	SMSG_SHOP_UPDATE_LIST_RESP,		// <= [(ver, platform, {updates}]
+									//							# 商品列表更新?
+	CMSG_SHOP_CLIENT_COMPLETE_ORDER,// 平台,订单叿结果(CMSG_CompleteShopOrder)	# 客户端告知用户完成订单?	CMSG_SHOP_CLIENT_COMPLETE_ORDER_RESP,
+
+    SMSG_HORN_DETIAL,                // 喇叭支付方式和价栿
+	// 排行榿	CMSG_CHART_GET = 1101,			// (chart_id, from, to) =>	# 获取特定榜单的情冿		
+	SMSG_CHART_GET_RESP,			// <= (count, [<csv>])		# 返回榜单信息
+
+    // 添加排行榜指仿    SMSG_RANK_CHAMPION,             //发送锦标赛排行榿	SMSG_CHART_GET_PERONAL_INFO_IN_RANK_RESP=1107,//1107 返回榜单中玩家信恿	// 荣誉宿	CMSG_HONOR_ROOM_GET_LIST = 1201,// =>
+	SMSG_HONOR_ROOM_GET_LIST_RESP,	// =>
+	// TODO: 添加荣誉室指仿
+  GL_PERSONAL_INFO_IN_RANK,//1203
+	//任务所有基础信息
+	CMSG_TASK_ALL = 1301,
+	SMSG_TASK_ALL_RESP,
+	//玩家任务信息
+	CMSG_PLAYER_TASK_STATE,
+	SMSG_PLAYER_TASK_STATE_RESP,
+	//玩家任务信息变化
+	SMSG_PLAYER_NEW_TASK,
+	//玩家任务领奖
+	CMSG_PLAYER_TASK_REWARD,
+	SMSG_PLAYER_TASK_REWARD_RESP,
+    //推广app 下载 
+    CMSG_TASK_APP_DOWNLOAD,
+    SMSG_TASK_APP_DOWNLOAD_RESP, 
+    CMSG_TASK_APP_DOWNLOAD_COMPLETE,
+    SMSG_TASK_APP_DOWNLOAD_COMPLETE_RESP,
+	//share分享
+	CMSG_REQUEST_SHARE_INFO,
+	SMSG_REQUEST_SHARE_INFO_RESP,
+
+	// 博彩相关
+	CMSG_RAFFLE_GET_RAFFLE = 1401,	// 领取奖券
+	CMSG_RAFFLE_GET_DRAWLIST,	// 获取奖品列表
+	SMSG_RAFFLE_GET_DRAWLIST_RESP,
+	CMSG_RAFFLE_GET_DRAWID,   // 获取一个奖品ID
+	SMSG_RAFFLE_GET_DRAWID_RESP,
+
+	CMSG_LOTTERY_BUY_LOTTERY = 1501,	// 购买彩票
+	SMSG_LOTTERY_BUY_LOTTERY_RESP,
+	SMSG_LOTTERY_GET_LOTTERY_MONEY, // 中奖
+	CMSG_LOTTERY_GET_LOTTERY_HOTNUMBER, // 获取热门号码
+	SMSG_LOTTERY_GET_LOTTERY_HOTNUMBER_RESP,
+	CMSG_LOTTERY_GET_LOTTERY_TOPHISTORY, // 获取贡献记录
+	SMSG_LOTTERY_GET_LOTTERY_TOPHISTORY_RESP,
+	CMSG_LOTTERY_GET_LOTTERY_INFO,	// 获取彩票信息，包括奖池，和开奖时间，购买人数，当前登陆玩家购买的号码和倍数（当天没有购买为零）
+	SMSG_LOTTERY_GET_LOTTERY_INFO_RESP,
+	CMSG_LOTTERY_GET_LAST_WINHISTORY, // 请求获取上期中奖名单
+	SMSG_LOTTERY_GET_LAST_WINHISTORY_RESP, 
+	CMSG_LOTTERY_GET_PREVIOUS_INFO,			// =>									# 获取上一期彩票情冿	SMSG_LOTTERY_GET_PREVIOUS_INFO_RESP,	// <= (期号,中奖号码,注数,中奖金额) 	# 上一期自己的中奖情况
+
+	// 杂项
+	CMSG_FEEDBACK = 2001,			// feedback msg =>			# 发送反馿	SMSG_FEEDBACK_RESP,				// <= (result)				# 反馈的结枿
+	CMSG_CAMPAIGN_GET_LIST = 2011,	// (timestamp) =>			# 获取活动信息
+	SMGS_CAMPAIGN_GET_LIST_RESP,	// <= (count, [campaign])	# 返回活动列表
+
+	CMSG_DAILYLOGIN,
+	SMGS_DAILY_RESP,	// 连续登陆的数捿
+	// 获取配置
+	CMSG_UPATA_CONFIG,			//
+	SMSG_UPATA_CONFIG_RESP,			//
+
+	//玩家填写邀请码
+	CMSG_INVITED = 2021,
+	SMSG_INVITED_RESP,
+
+	// 查询/回应推荐短信内容
+	CMSG_INVITED_CONTENT,
+	SMSG_INVITED_CONTENT_RESP,
+
+	//==其他模块
+
+	//摇钱栿	CMSG_MONEYTREE_INFO = 2031,	// 摇钱树信恿	SMGS_MONEYTREE_INFO_RESP,	
+
+	CMSG_MONEYTREE_ROCK,		// 摇钱树晃钿	SMGS_MONEYTREE_ROCK_RESP,
+
+    //Slots
+    CMSG_SLOTS_ENTER =2035,								//2035 老虎机进场请汿    SMSG_SLOTS_ENTER_RESP,							//2036 老虎机进场响庿    CMSG_SLOTS_START,								//2037 老虎机开始请汿    SMSG_SLOTS_START_RESP,							//2038 老虎机开始响庿    CMSG_SLOTS_COMPARE,								//2039 老虎机比牌请汿
+    SMSG_SLOTS_COMPARE_RESP,						//2040 老虎机比牌响庿    CMSG_SLOTS_HARVEST,								//2041 老虎机收分请汿    SMSG_SLOTS_HARVEST_RESP,						//2042 老虎机收分响庿    CMSG_SLOTS_QUIT,								//2043 老虎机退出请汿    SMSG_SLOTS_QUIT_RESP,							//2044 老虎机退出响庿    SMSG_SLOTS_UPDATE,								//2045 老虎机数据刷斿    CMSG_SLOTS_RESUME,                              //2046 老虎机重连请汿
+    SMSG_SLOTS_RESUME_RESP,                         //2047 老虎机重连响庿    CMSG_SLOTS_CHANGE,                              //2048 老虎机换倍请汿
+    SMSG_SLOTS_CHANGE_RESP,                         //2049 老虎机换倍响庿    CMSG_PLAYER_SLOTS_RANK,							//2050 老虎机中奖排名信息请汿    SMSG_PLAYER_SLOTS_RANK_RESP,						//2051 老虎机中奖排名信息返囿
+    //兑换系统
+    CMSG_REWARD_GET_PERSONAL_INFO = 2100, //得到用户的信恿 
+    SMSG_REWARD_GET_PERSONAL_INFO_RESP, 
+    CMSG_REWARD_GET_REWARD_INFO,              //得到兑换物品的信恿 
+    SMSG_REWARD_GET_REWARD_INFO_RESP, 
+    CMSG_REWARD_PURCHASE_BY_COUPON,           //玩家兑换请求  
+    SMSG_REWARD_PURCHASE_BY_COUPON_RESP,
+
+	//财神系统
+	CMSG_PLAYER_LIST_INFO = 3001,	// 玩家列表
+	SMSG_PLAYER_LIST_INFO_RESP,	
+	CMSG_PLAYER_ENTER_CAISHEN_TABLE, // 玩家进入房间
+	SMSG_PLAYER_ENTER_CAISHEN_RESP,	
+	CMSG_PLAYER_LEAVE_CAISHEN_TABLE, // 玩家离开房间
+	SMSG_PLAYER_LEAVE_CAISHEN_RESP,	
+	SMSG_PLAYER_START_ANTE_CAISHEN_TABLE_BROADCAST,// 开始下注广撿	CMSG_PLAYER_ANTE_CAISHEN_TABLE,	// 下注	
+	SMSG_PLAYER_ANTE_CAISHEN_RESP,	
+	SMSG_PLAYER_OPEN_WINNING_COUNTDOWN_BEGIN_BROADCAST, // 开奖倒计时广撿	CMSG_PLAYER_ANTE_INFO, // 查询下注信息
+	SMSG_PLAYER_ANTE_INFO_RESP,
+	SMSG_PLAYER_RESULT_INFO_RESP,		//开奿	SMSG_PLAYER_CHARTS_TOP_RESP,		//排行榜topN
+	CMSG_PLAYER_CHARTS_FROM_TO,			//排行榿	SMSG_PLAYER_CHARTS_FROM_TO_RESP,
+	CMSG_CAISHEN_PLAYER_RESUME_GAME,	//
+	SMSG_CAISHEN_PLAYER_RESUME_GAME_RESP, // (SMSG_PlayerResumeGameInCaiShen_Resp)
+	SMSG_PLAYER_ANTE_CAISHEN_INFO_RESP,	//玩家押注情况, 用于断线后恢复押泿	// 私人圿
+	SMSG_PLAYER_START_SET_WINNING_CAISHEN_TABLE_BROADCAST, // 开始设置开奖（因为满足条件人数>=2才能开始）	
+	SMSG_PLAYER_CANCEL_START_SET_WINNING_CAISHEN_TABLE_BROADCAST, // 取消设置开奖（因为满足条件人数>=2才能开始）	
+	CMSG_PLAYER_SET_WINNING_CAISHEN_TABLE,	// 设置开奿	SMSG_PLAYER_SET_WINNING_CAISHEN_TABLE_RESP,	
+
+	//麻将
+	CMSG_PLAYER_ENTER_MAHJONG_TABLE_REQ = 4001,//客户端发送玩家进入桌子的请求
+	CMSG_PLAYER_MAHJONG_TABLE_READY_REQ,//客户端发送玩家准备请汿	CMSG_PLAYER_CHANGE_MAHJONG_TABLE_REQ,//客户端发送玩家换桌请汿	CMSG_PLAYER_LEAVE_MAHJONG_TABLE_REQ,//客户端发送玩家离桌请汿
+	CMSG_PLAYER_MAHJONG_ACTION,//客户端发送玩家执行的动作
+	CMSG_PLAYER_MAHJONG_DISCARD,//客户端发送玩家打出的牿	
+	SMSG_MAHJONG_BANKER_INFO_BROADCAST,//服务器广播庄家和骰子信息
+	SMSG_MAHJONG_HANDMAHJONG_INFO,//服务器发送玩家手牌信恿	SMSG_MAHJONG_ACTION_RESP,//服务器对玩家动作的回庿	SMSG_MAHJONG_ACTION_BROADCAST,//服务器广播某玩家执行的动使	SMSG_MAHJONG_ACTIVEPLAYER_BROADCAST,//服务器广播当前活跃玩宿	SMSG_PLAYER_MAHJONG_DEAL,//服务器向玩家发单张牌
+	SMSG_MAHJONG_DISCARD_MAHJONG_BROADCAST,//服务器广播某个玩家打出的牿	SMSG_MAHJONG_PLAYER_ACTION_ASK,//服务器玩家动作询闿	SMSG_MAHJNG_GAMERESULT_BROADCAST,//游戏结果广播
+	SMSG_MAHJONG_NUMBER_BROADCAST,//客户端广播当前剩余牌敿	CMSG_PLAYER_MAHJONG_TUOGUAN_REQ,//客户端请求托箿	CMSG_PLAYER_MAHJONG_CANCLE_TUOGUAN_REQ,//客户端请求取消托箿	SMSG_PLAYER_MAHJONG_TUOGUAN_RES,//向客户端给出回应
+	SMSG_PLAYER_MAHJONG_CANCLE_TUOGUAN_RES,//向客户端给出取消托管回应
+	SMSG_PLAYER_MAHJONG_QUICKSTART_REQ,//麻将客户端快速开始请汿    SMSG_PLAYER_MAHJONG_TEST_GET_FIXED_CARD_REQ,    //服务器询问客户端，获取指定的麻将
+    SMSG_PLAYER_MAHJONG_TEST_GET_FIXED_CARD_ANS,    //客户端应答，获取指定的麻尿    SMSG_LISTEN_HELP,                               //听牌提示，提示玩家出哪些牌后，可以听牿    SMSG_HAS_LISTENNED_CARD,                        //听牌提示，提示玩家可以胡哪些牿    SMSG_GET_CARDS_TING_INFO_WHEN_3N1,              //玩家手牌数量丿n+1的时候，查看听牌提示信息
+    SMSG_PLAYER_MAHJONG_LIANGDAO_ASK,               //询问玩家是否亮倒手牿    CMSG_PLAYER_MAHJONG_LIANGDAO_ANS,               //玩家亮倒手牌后的响庿    SMSG_PLAYER_MAHJONG_LIANGDAO_BROADCAST,         //广播玩家亮倒手牌信恿    SMSG_PLAYER_MAHJONG_GANG_RESULT,                //玩家杠牌结算信息
+    SMSG_PLAYER_MAHJONG_TABLE_CREATE_REQ,           //创建麻将桌子的请求协访    SMSG_PLAYER_MAHJONG_TABLE_CREATE_ANS,           //创建麻将桌子的请求协访    SMSG_PLAYER_MAHJONG_TABLE_PWD_CHECK_REQ,        //进入棋牌室桌子前的密码校验请汿    SMSG_PLAYER_MAHJONG_TABLE_PWD_CHECK_ANS,        //进入棋牌室桌子前的密码校验响庿    SMSG_PLAYER_MAHJONG_KICK_PLAYER_REQ,            //棋牌室房主踢人请汿    SMSG_PLAYER_MAHJONG_KICK_PLAYER_ANS,            //棋牌室房主踢人响庿    SMSG_PLAYER_MAHJONG_TABLE_INFO_CHANGE_BROADCAST,    //桌子信息改变广播消息
+	CMSG_PLAYER_EXCHANGE_RATE_INFO_REQ,             // 客户端请求商品兑换列表请汿    SMSG_PLAYER_EXCHANGE_RATE_INFO,                 // 商品兑换列表信息
+    CMSG_PLAYER_GET_GOLDCOINS_BY_DIAMONDS_REQ,      // 客户端请求钻石购买金币请汿	SMSG_PLAYER_GET_GOLDCOINS_BY_DIAMONDS_ANS,      // 钻石购买金币应答
+	SMSG_PLAYER_MAHJONG_SYC_TABLE_DETAIL_INFO,      //同步桌子详细信息，进桌，断线重连以后发逿    SMSG_PLAYER_ENTER_OR_LEAVE_CARDROOM_NOTIFY,     //通知服务器玩家进入或是离开棋牌宿    SMSG_PLAYER_MAHJONG_PLAYER_SESSION_STATE_BROADCAST,     //同步玩家连接状怿    CMSG_PRESENT_INFO,                              // 点击菜单页面送礼按钮(服务器要判断玩家是否有权限）
+    SMSG_PRESENT_INFO_RESP,
+    CMSG_PRESENT_ACCOUNT_CHECK,                     // 玩家输入对方邀请码后点确认（需要获取对方昵称）
+    SMSG_PRESENT_ACCOUNT_CHECK_RESP,
+    CMSG_GIVE_PRESENT,                              // 玩家确认送金帿    SMSG_GIVE_PRESENT_RESP,
+    SMSG_PLAYER_ENTER_ROOM_RECHARGE,                // 进入房间时没钱，向客户端推送的充值信恿    SMSG_PLAYER_PUSH_PROMPT_MSG,                    // 推送一个窗口消息给客户端，以备后用
+	SMSG_MAHJONG_ACTION_RATE_RESP,					// 服务器发送玩家动作rate信息
+	SMSG_MAHJONG_ACTION_RATE_BROADCAST,				// 服务器广播玩家动作rate信息
+	SMSG_MAHJONG_TABLE_READY_STATE_BROADCAST,		// 服务器广播牌桌玩家准备状怿明牌准备or准备)
+	CMSG_PLAYER_GET_SIGNED_PANEL_INFO,				// 玩家进入签到面板请求
+	SMSG_PLAYER_GET_SIGNED_PANEL_INFO_RSP,			// 玩家进入签到面板响应
+	CMSG_PLAYER_SIGNED,								// 玩家签到
+	SMSG_PLAYER_SIGNED_RSP,							// 玩家签到响应
+    CMSG_PLAYER_GET_ROOM_PUSH_INFO,                 // 获取房间实时信息请求
+    SMSG_PLAYER_GET_ROOM_PUSH_INFO_RSP,             // 获取房间实时信息响应
+
+    CMSG_PLAYER_GET_DICEROOM_TABLE_LIST = 5000, //获得骰子桌列表请汿    SMSG_PLAYER_GET_DICEROOM_TABLE_LIST_RSP,    //获得骰子桌列表响庿    CMSG_PLAYER_REFRESH_DICEROOM_TABLES,        //刷新骰子牌桌列表请求
+    SMSG_PLAYER_REFRESH_DICEROOM_TABLES_RSP,    //刷新骰子牌桌列表响应
+    CMSG_PLAYER_CREATE_DICEROOM_TABLE,          //创建骰子牌桌请求
+    SMSG_PLAYER_CREATE_DICEROOM_TABLE_RSP,      //创建骰子牌桌响应
+    
+    SMSG_PLAYER_DICE_TABLE_INFO,                //进桌，同步桌子信恿    SMSG_PLAYER_DICE_TABLE_INFO_SYNC,           //断线重连后，同步桌子信息
+    SMSG_PLAYER_DICE_JOIN_TABLE_BROADCAST,      //新玩家进入桌子广撿    CMSG_PLAYER_DICE_TABLE_READY,               //玩家请求准备
+    SMSG_PLAYER_DICE_TABLE_READY_BROADCAST,     //玩家准备广播
+    SMSG_PLAYER_DICE_TABLE_COUNTDOWN_BEGIN,     //开始倒计旿
+    SMSG_PLAYER_DICE_TABLE_DEALER,                  //庄家信息
+    SMSG_PLAYER_DICE_TABLE_GAME_BEGIN_BROADCAST,    //游戏开姿
+    SMSG_PLAYER_DICE_ACTIVE_PLAYER,                 //活跃玩家
+    SMSG_PLAYER_DICE_PLAYER_MIN_EFFICIENT_MONEY_IN_GAME,//当前游戏玩家最少金钱数
+    
+    CMSG_PLAYER_DICE_TABLE_ANTE,                        //下注：底注，跟注，加泿    SMSG_PLAYER_DICE_TABLE_ANTE_RSP,                    //加注响应
+    SMSG_PLAYER_DICE_TABLE_ANTE_BROADCAST,              //下注广播
+    SMSG_PLAYER_DICE_TABLE_BASE_ANTE_BROADCAST,         //下底注广撿    SMSG_PLAYER_DICE_TABLE_ANTE_TOTAL_COUNT_BROADCAST,  //总筹码广撿    CMSG_PLAYER_DICE_TABLE_LOOK_POKER,                  //请求看牌
+    SMSG_PLAYER_DICE_TABLE_LOOK_POKER_RSP,              //看牌响应
+    SMSG_PLAYER_DICE_TABLE_LOOK_POKER_BROADCAST,        //玩家看牌广播
+    CMSG_PLAYER_DICE_TABLE_COMPARE,                     //请求比牌
+    SMSG_PLAYER_DICE_TABLE_COMPARE_RSP,                 //比牌响应
+    SMSG_PLAYER_DICE_TABLE_COMPARE_BROADCAST,           //玩家比牌广播
+    CMSG_PLAYER_DICE_TABLE_FOLD,                        //请求弃牌
+    SMSG_PLAYER_DICE_TABLE_FOLD_RSP,                    //弃牌响应
+    SMSG_PLAYER_DICE_TABLE_FOLD_BROADCAST,              //玩家弃牌广播
+
+    SMSG_PLAYER_DICE_TABLE_ROUNDS_CHANGE,               //牌桌轮次广播
+    SMSG_PLAYER_DICE_TABLE_GAME_OVER_BROADCAST,         //游戏结束
+    
+    SMSG_PLAYER_DICE_PLAYER_EFFECTIVE_COINS_BROADCAST,  //玩家的有效金钱数釿    SMSG_PLAYER_DICE_PLAYER_HOUSE_MASTER_CHANGE,        //房主变化广播
+    SMSG_PLAYER_DICE_TABLE_PLAYER_ONLINE_STATUS_CHANGED_BROADCAST,  //玩家状态变化广撿    CMSG_PLAYER_DICE_TABLE_FOLLOW_ALLTIME,              //玩家设置是否一直跟到底
+    SMSG_PLAYER_DICE_TABLE_FOLLOW_ALLTIME_BROADCAST,    //广播玩家是否跟到庿
+    CMSG_PLAYER_SEND_SELECT_ABONDON_COLOR = 6000,       //发送选缺
+    SMSG_PLAYER_SELECT_ABONDO_COLOR_BROADCAST,          //选缺结果广播
+    CMSG_PLAYER_SEND_CHANGE_MAHJONG_REQ,                //发送换牌请汿
+    SMSG_PLAYER_SEND_CHANGE_MAHJONG_RSP,                //换牌请求响应
+    SMSG_PLAYER_CHANGE_MAHJONG_FINISHED_BROADCAST,      //换牌完成广播消息	
+	SMSG_PLAYER_XUELIUCHENGHE_HU_BROADCAST,             // 四川麻将血流成河玩家胡牌广撿    SMSG_PLAYER_XUELIUCHENGHE_POCHAN_BROADCAST,         // 四川麻将血流成河玩家破产广撿    SMSG_PLAYER_XUELIUCHENGHE_POCHAN_RES,               // 四川麻将血流成河玩家破产回夿认输，充倿，预留接叿    SMSG_PLAYER_XUELIUCHENGHE_GAMEOVER_BROADCAST,       // 四川麻将血流成河游戏结束广撿    SMSG_PLAYER_XUELIUCHENGHE_OFFLINE_BROADCAST,        // 四川麻将血流成河断线重连附加广撿    SMSG_PLAYER_XUELIUCHENGHE_POCHAN_BAOHU_RSP,         // 四川麻将血流成河玩家破产保护信恿    SMSG_PLAYER_XUELIUCHENGHE_POCHAN_BAOHU_BROADCAST,   // 四川麻将血流成河玩家破产保护广撿    SMSG_PLAYER_XUELIUCHENGHE_POCHAN_BAOHU_OVER,        // 四川麻将血流成河玩家破产保护充值状态完房
+
+    SMSG_PLAYER_1V1MJ_GAME_OVER = 6025,                 //二人麻将游戏结束
+    SMSG_PLAYER_1V1MJ_BUHUA_BROADCAST,                  //二人麻将补花广播
+    SMSG_PLAYER_1V1MJ_BUHUA_RESP,                       //二人麻将补花响应
+    SMSG_PLAYER_1V1MJ_BUHUA_FINISH,                     //二人麻将补花完成
+    SMSG_PLAYER_1V1MJ_TASK_BROADCAST,                   //二人麻将任务广播
+    SMSG_PLAYER_1V1MJ_TASK_FINISH_RESP,                 //二人麻将任务完成状态resp
+    SMSG_PLAYER_1V1MJ_OFFLINE_INFO,                     //二人麻将断线重连
+    SMSG_PUSH_ONE_USER_ATTR_INFO,                       //推送玩家的属性信恿-单播
+    SMSG_PUSH_MULTI_USER_ATTR_INFO,                     //推送玩家的属性信恿-广播
+	CMSG_PLAYER_1V1MJ_TABLE_READY_REQ,					// 客户端发送玩家准备请汿二人麻将明牌准备)
+	SMSG_PLAYER_1V1MJ_MINGPAI_STATE_BROADCAST,			//二人麻将明牌场玩家明牌状态广撿	SMSG_PLAYER_1V1MJ_MINGPAI_USER_INFO_BROADCAST,		//二人麻将明牌场明牌玩家信息广撿	SMSG_PLAYER_1V1MJ_MINGPAI_USER_GET_MJ_BROADCAST,	//二人麻将明牌场明牌玩家取牌信息广撿	SMSG_PLAYER_1V1MJ_MINGPAI_CHATING_BROADCAST,		//二人麻将明牌场查听信息广撿	SMSG_PLAYER_1V1MJ_MINGPAI_BUHUA_INFO_BROADCAST,		//二人麻将明牌场明牌玩家补花广撿	SMSG_PLAYER_1V1MJ_MINGPAI_FINISH_INFO_BROADCAST,	//二人麻将明牌场明牌完成广撿
+    CMSG_PLAYER_1V1MJ_SEND_SURRENDER,                   //二人麻将发送投陿    SMSG_PLAYER_1V1MJ_SEND_SURRENDER_RESP,          //二人麻将发送投降回庿    SMSG_PLAYER_1V1MJ_RECV_SURRENDER,                   //二人麻将收到对方请求投降
+    CMSG_PLAYER_1V1MJ_ACK_SURRENDER,                  //是否同意投降
+    SMSG_PLAYER_1V1MJ_ACK_SURRENDER_RESP,         //同意投降回应
+    SMSG_PLAYER_1V1MJ_RECV_ACK_SURRENDER_RESP,         //同意投降对方响应
+    SMSG_PLAYER_1V1MJ_SURRENDER_GAME_OVER,    //投降牌局结束广播
+    CMSG_PLAYER_1V1MJ_SURRENDER_GET,                 //获取投降挡位
+    CMSG_PLAYER_1V1MJ_SURRENDER_GET_RESP,         //获取投降挡位回应
+    //观战
+    CMSG_PLAYER_ASK_IS_WATCHER = 6050,      //玩家询问是否为围观Id
+    SMSG_PLAYER_ASK_IS_WATCHER_RESP,        //服务器通知是否为围观Id
+    CMSG_PLAYER_REQUEST_WATCH_LIST,         //请求围观列表
+    SMSG_PLAYER_REQUEST_WATCH_LIST_RESP,    //返回围观列表
+    CMSG_PLAYER_ENTER_VIEW_TABLE,           //客户端请求进入旁觿    SMSG_PLAYER_ENTER_VIEW_TABLE_RESULT,    //客户端请求进入旁观结枿    //围观牌桌内协访    SMSG_PLAYER_ENTER_VIEWED_PLAYER_ID,    //主视角Id
+    SMSG_TABLE_WATCH_INFO,                 //其他玩家手牌的消恿    SMSG_TABLE_WATCH_PLAYER_DEAL_MAHJONG,  //向其中一个玩家发一张手牿    CMSG_TABLE_WATCH_PLAYER_CHANGE_VIEW_PLAYER,   //围观玩家切换视角
+
+    CMSG_COMP_GET_HALL_LIST = 7000,          //7000 比赛场获取比赿    SMSG_COMP_GET_HALL_LIST_RESP,            //7001 比赛场获取比赛响庿    CMSG_COMP_GET_PLAYER_NUM,             //获取每场比赛的人敿    SMSG_COMP_GET_PLAYER_NUM_RESP,
+    CMSG_ENROLL_COMPETITION,                //报名
+    SMSG_ENROLL_COMPETITION_RESP,
+    SMSG_COMP_COMPETITION_WILL_BEGIN_RSP,//提示玩家，比赛即将开姿    SMSG_COMP_PRIZE_RSP, // 比赛发奖
+    SMSG_COMP_WAIT_OTHER_TABLE,//请求还有多少桌未结束
+    SMSG_COMP_WAIT_OTHER_TABLE_RESP, //提示玩家，还有几桌未结束，等着吿    CMSG_EXIT_COMPETITION,//退赿    SMSG_EXIT_COMPETITION_RESP,
+    CMSG_NEED_SYNC_NUMS,//点击比赛圿 需要同步人敿    SMSG_NEED_SYNC_NUMS_RSP,//点击比赛圿 需要同步人敿    CMSG_CANCEL_SYNC_NUMS,//点击退出比赛场  取消同步
+    SMSG_CANCEL_SYNC_NUMS_RSP,
+    CMSG_GET_COMPETITION_CHART,//获取比赛排行榿    SMSG_GET_COMPETITION_CHART_RESP,
+    CMSG_GET_COMPETITION_GET_PLAYER_INFO,//获取玩家比赛详情
+    SMSG_GET_COMPETITION_GET_PLAYER_INFO_RESP,
+
+	// Gateway Message (专用)
+	GATEWAY_MSG = 9001,
+	GATEWAY_MSG_RESP,
+	GATEWAY_SESSION_MSG_RESP,
+
+	GMSG_CLIENT_LOGOUT,		// 客户端退出此GameServer(用于Gateway Server)
+	SMSG_CLIENT_LOGOUT_RESP,
+
+	GMSG_CLIENT_OFFLINE, //客户端断线	
+	GMSG_AVATAR_UPDATE, //avatar头像更新
+
+	// 客户端界面专甿	UIMSG_POPUP_BUTTON_CLICKED = 10001,
+	UIMSG_CANCEL_LOADING,
+
+	CSMSG_COUNT,
+};
+#endif  // MUDUO_EXAMPLES_BAINAGAME_OP_CODEC_H
